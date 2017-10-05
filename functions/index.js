@@ -15,7 +15,7 @@ admin.initializeApp(functions.config().firebase);
 exports.webhook = functions.https.onRequest((request, response) => {
   const { id = false } = request.query;
   console.log(request.body);
-  admin.database().ref(`users/${id}/projects`).push(JSON.parse(request.body.payload));
+  admin.database().ref(`users/${id}/projects`).push(request.body.payload);
   //firebase.database().ref(`/projects/${id}`).set({test: Date.now()});
   response.json({result: true});
 });
